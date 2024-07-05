@@ -1,0 +1,11 @@
+--- /home/EU/chvalenl/projects/cheshire-ihp130-o/target/ihp13/pickle/out/basilisk_dkong.morty.sv.orig	2024-07-05 10:54:14.648990277 +0200
++++ /home/EU/chvalenl/projects/cheshire-ihp130-o/target/ihp13/pickle/out/basilisk_dkong.morty.sv	2024-07-05 10:54:22.428867214 +0200
+@@ -191217,7 +191217,7 @@
+ // Component : UsbOhciAxi4
+ // Git hash  : ed2ae179904c1c6421617f443c92966db416c54d
+ 
+-`timescale 1ns/1ps
++//`timescale 1ns/1ps
+ 
+ module UsbOhciAxi4 (
+   output wire          io_dma_aw_valid,

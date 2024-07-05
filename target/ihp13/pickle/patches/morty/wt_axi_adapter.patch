@@ -4,11 +4,11 @@
    logic icache_rd_full, icache_rd_empty;
    logic dcache_rd_full, dcache_rd_empty;
    logic dcache_wr_full, dcache_wr_empty;
-+  logic [$clog2(AxiDataWidth/8)-1:0] dcache_paddr_off;
++  logic [$clog2(CVA6Cfg.AxiDataWidth/8)-1:0] dcache_paddr_off;
  
    assign icache_data_ack_o = icache_data_req_i & ~icache_data_full;
    assign dcache_data_ack_o = dcache_data_req_i & ~dcache_data_full;
-+  assign dcache_paddr_off = dcache_data.paddr[$clog2(AxiDataWidth/8)-1:0];
++  assign dcache_paddr_off = dcache_data.paddr[$clog2(CVA6Cfg.AxiDataWidth/8)-1:0];
  
    // arbiter
    assign arb_req = {
@@ -20,7 +20,7 @@
 +              axi_wr_be = 1'b1  << dcache_paddr_off;  // byte
                2'b01:
 -              axi_wr_be[0][dcache_data.paddr[$clog2(CVA6Cfg.AxiDataWidth/8)-1:0]+:2] = '1;  // hword
-+              axi_wr_be = 2'b11 << dcache_paddr_off:  // hword
++              axi_wr_be = 2'b11 << dcache_paddr_off;  // hword
                2'b10:
 -              axi_wr_be[0][dcache_data.paddr[$clog2(CVA6Cfg.AxiDataWidth/8)-1:0]+:4] = '1;  // word
 +              axi_wr_be = 4'hF  << dcache_paddr_off;  // word
@@ -42,15 +42,15 @@
                  2'b01:
 -                axi_wr_be[0][dcache_data.paddr[$clog2(CVA6Cfg.AxiDataWidth/8)-1:0]+:2] =
 -                    '1;  // hword
-+                axi_wr_be = 2'b11 << dcache_paddr_off:  // hword
++                axi_wr_be = 2'b11 << dcache_paddr_off;  // hword
                  2'b10:
 -                axi_wr_be[0][dcache_data.paddr[$clog2(CVA6Cfg.AxiDataWidth/8)-1:0]+:4] =
 -                    '1;  // word
-+                axi_wr_be = 4'hF << dcache_paddr_off:  // word
++                axi_wr_be = 4'hF << dcache_paddr_off;  // word
                  default:
 -                axi_wr_be[0][dcache_data.paddr[$clog2(CVA6Cfg.AxiDataWidth/8)-1:0]+:8] =
 -                    '1;  // dword
-+                axi_wr_be = 8'hFF << dcache_paddr_off:  // dword
++                axi_wr_be = 8'hFF << dcache_paddr_off;  // dword
                endcase
                amo_gen_r_d = 1'b1;
                // need to use a separate ID here, so concat an additional bit
