@@ -268,7 +268,7 @@ IG_ALL += $(CHS_ALL) $(IG_SIM_ALL)
 
 ig-all:         $(CHS_ALL)
 ig-sw-all:      $(CHS_SW_ALL)
-ig-hw-all:      $(CHS_HW_ALL) ig-hw-cva6
+ig-hw-all:      $(CHS_HW_ALL) ig-hw-cva6 ig-hw-gen-split-bootrom
 ig-bootrom-all: $(CHS_BOOTROM_ALL)
 ig-sim-all:     $(CHS_SIM_ALL) $(IG_SIM_ALL)
 
